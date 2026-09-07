@@ -34,7 +34,7 @@ const timetable = Object.fromEntries(Object.entries(rawTimetable).map(([key, les
 ]));
 
 // Google Apps Script를 웹 앱으로 배포한 뒤 아래 주소를 교체하세요.
-const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtFl-WRmI8j2ynhF69mhAce1GUUJlMuEWyOVrt2ltz2S0GW-ip-d-hknYprQDLwHR_Yw/exec";
 
 const finderGrade = document.querySelector("#finderGrade");
 const finderClass = document.querySelector("#finderClass");
