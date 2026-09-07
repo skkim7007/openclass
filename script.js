@@ -59,6 +59,7 @@ const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtFl-WRmI8j2
 const finderGrade = document.querySelector("#finderGrade");
 const finderClass = document.querySelector("#finderClass");
 const feedbackClass = document.querySelector("#feedbackClass");
+const feedbackSubject = document.querySelector("#feedbackSubject");
 const resultArea = document.querySelector("#resultArea");
 const helper = document.querySelector(".helper");
 
@@ -71,6 +72,19 @@ function addClassOptions(select, grade) {
 for (let g = 1; g <= 3; g++) {
   for (let c = 1; c <= 10; c++) feedbackClass.add(new Option(`${g}학년 ${c}반`, `${g}-${c}`));
 }
+
+feedbackClass.addEventListener("change", () => {
+  feedbackSubject.innerHTML = '<option value="">과목 선택</option>';
+  const lessons = timetable[feedbackClass.value];
+  if (!lessons) {
+    feedbackSubject.disabled = true;
+    feedbackSubject.firstElementChild.textContent = "학반을 먼저 선택해 주세요";
+    return;
+  }
+  [...new Set(lessons.map(lesson => lesson.subject))]
+    .forEach(subject => feedbackSubject.add(new Option(subject, subject)));
+  feedbackSubject.disabled = false;
+});
 
 finderGrade.addEventListener("change", () => {
   addClassOptions(finderClass, finderGrade.value);
@@ -144,6 +158,8 @@ document.querySelector("#feedbackForm").addEventListener("submit", async event =
       body: JSON.stringify(payload)
     });
     form.reset();
+    feedbackSubject.innerHTML = '<option value="">학반을 먼저 선택해 주세요</option>';
+    feedbackSubject.disabled = true;
     document.querySelector("#charCount").textContent = "0";
     status.className = "form-status success";
     status.textContent = "소중한 참관록이 제출되었습니다. 감사합니다.";

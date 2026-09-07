@@ -27,10 +27,10 @@
 
     <div class="hero-content wrap" id="top">
       <div class="eyebrow"><span></span> OCEAN OPEN CLASS</div>
-      <h1>아이의 배움이<br><em>빛나는 순간</em>을 만나보세요.</h1>
+      <h1>학생의 배움이<br><em>빛나는 순간</em>을 만나보세요.</h1>
       <p class="event-title">2026. 9. 21.(월), 5~6교시<br>오션중학교 학부모 공개수업</p>
       <div class="hero-actions">
-        <a class="button primary" href="#classroom">우리 아이 교실 찾기 <span>→</span></a>
+        <a class="button primary" href="#classroom">학생 교실 찾기 <span>→</span></a>
         <a class="button ghost" href="#feedback">온라인 참관록 작성</a>
       </div>
     </div>
@@ -42,7 +42,7 @@
     <section class="section wrap" id="classroom">
       <div class="section-heading">
         <div><span class="section-number">01</span><p class="kicker">CLASSROOM FINDER</p></div>
-        <h2>우리 아이의<br>수업 교실을 찾아보세요.</h2>
+        <h2>학생의 수업 교실을<br>찾아보세요.</h2>
         <p>학년과 반을 선택하면 5·6교시의 교실, 과목, 수업 주제를 한눈에 확인할 수 있습니다.</p>
       </div>
 
@@ -108,7 +108,7 @@
           <p class="kicker light">CLASS NOTE</p>
           <h2>오늘의 수업,<br>따뜻한 한마디를<br>남겨주세요.</h2>
           <p>학부모님의 소중한 의견은 더 좋은 수업을 만들어 가는 힘이 됩니다.</p>
-          <blockquote>“함께 보고, 함께 나누며<br>아이들의 성장을 응원합니다.”</blockquote>
+          <blockquote>“함께 보고, 함께 나누며<br>학생들의 성장을 응원합니다.”</blockquote>
         </div>
 
         <form class="feedback-card" id="feedbackForm">
@@ -125,7 +125,9 @@
             </label>
             <label class="field">
               <span>과목</span>
-              <input name="subject" type="text" placeholder="예: 국어" maxlength="30" required>
+              <select name="subject" id="feedbackSubject" required disabled>
+                <option value="">학반을 먼저 선택해 주세요</option>
+              </select>
             </label>
           </div>
           <label class="field message-field">
