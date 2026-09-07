@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12367a">
+  <meta name="description" content="오션중학교 학부모 공개수업 교실 안내 및 온라인 참관록">
+  <title>오션중학교 학부모 공개수업</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav wrap" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="오션중학교 공개수업 홈">
+        <img src="assets/ocean-logo.png" alt="오션중학교 로고">
+        <span>오션중학교</span>
+      </a>
+      <div class="nav-links">
+        <a href="#classroom">교실 찾기</a>
+        <a class="nav-cta" href="#feedback">참관록 작성</a>
+      </div>
+    </nav>
+
+    <div class="hero-content wrap" id="top">
+      <div class="eyebrow"><span></span> OCEAN OPEN CLASS</div>
+      <h1>아이의 배움이<br><em>빛나는 순간</em>을 만나보세요.</h1>
+      <p class="event-title">9/21(월), 5~6교시<br>오션중학교 학부모 공개수업</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#classroom">우리 아이 교실 찾기 <span>→</span></a>
+        <a class="button ghost" href="#feedback">온라인 참관록 작성</a>
+      </div>
+    </div>
+    <div class="hero-shape shape-one"></div>
+    <div class="hero-shape shape-two"></div>
+  </header>
+
+  <main>
+    <section class="section wrap" id="classroom">
+      <div class="section-heading">
+        <div><span class="section-number">01</span><p class="kicker">CLASSROOM FINDER</p></div>
+        <h2>우리 아이의<br>수업 교실을 찾아보세요.</h2>
+        <p>학년과 반을 선택하면 5·6교시의 교실, 과목, 수업 주제를 한눈에 확인할 수 있습니다.</p>
+      </div>
+
+      <div class="finder-panel">
+        <div class="field-row">
+          <label class="field">
+            <span>학년</span>
+            <select id="finderGrade">
+              <option value="">학년 선택</option>
+              <option value="1">1학년</option><option value="2">2학년</option><option value="3">3학년</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>반</span>
+            <select id="finderClass" disabled>
+              <option value="">반 선택</option>
+            </select>
+          </label>
+          <button class="button search" id="findButton" type="button">교실 찾기</button>
+        </div>
+        <p class="helper">학년과 반을 모두 선택해 주세요.</p>
+      </div>
+
+      <div class="result-area" id="resultArea" aria-live="polite">
+        <div class="empty-state">
+          <div class="pin-icon">⌖</div>
+          <p>학년과 반을 선택하면<br>수업 정보가 여기에 표시됩니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="feedback-section" id="feedback">
+      <div class="wrap feedback-layout">
+        <div class="feedback-intro">
+          <span class="section-number light">02</span>
+          <p class="kicker light">CLASS NOTE</p>
+          <h2>오늘의 수업,<br>따뜻한 한마디를<br>남겨주세요.</h2>
+          <p>학부모님의 소중한 의견은 더 좋은 수업을 만들어 가는 힘이 됩니다.</p>
+          <blockquote>“함께 보고, 함께 나누며<br>아이들의 성장을 응원합니다.”</blockquote>
+        </div>
+
+        <form class="feedback-card" id="feedbackForm">
+          <div class="form-title">
+            <span>온라인 참관록</span>
+            <small>모든 항목을 작성해 주세요.</small>
+          </div>
+          <div class="two-columns">
+            <label class="field">
+              <span>학반</span>
+              <select name="className" id="feedbackClass" required>
+                <option value="">학반 선택</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>과목</span>
+              <input name="subject" type="text" placeholder="예: 국어" maxlength="30" required>
+            </label>
+          </div>
+          <label class="field message-field">
+            <span>오늘 참관하신 수업에서 가장 인상 깊으셨던 부분이나 그 외 하고 싶은 말씀이 있으시면 적어주세요.</span>
+            <textarea name="message" rows="7" maxlength="1000" placeholder="수업에서 느낀 점을 자유롭게 작성해 주세요." required></textarea>
+            <small class="count"><b id="charCount">0</b> / 1,000자</small>
+          </label>
+          <label class="privacy-check">
+            <input type="checkbox" required>
+            <span>참관록 제출을 위한 정보 수집 및 이용에 동의합니다.</span>
+          </label>
+          <button class="button submit" type="submit">참관록 제출하기 <span>→</span></button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="brand footer-brand"><img src="assets/ocean-logo.png" alt=""><span>오션중학교</span></div>
+      <p>부산광역시 강서구 명지오션시티1로 221<br>교무실 051-609-1700</p>
+      <p class="copyright">© OCEAN MIDDLE SCHOOL</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
