@@ -85,6 +85,11 @@
           <p><b id="selectedFloor">전체 층 배치도</b><br>지도를 누르면 크게 열립니다. 휴대전화에서는 확대해서 확인하실 수 있습니다.</p>
         </div>
         <div class="map-frame">
+          <div class="location-banner" id="locationBanner" hidden>
+            <span>선택한 수업 위치</span>
+            <strong id="bannerFloor"></strong>
+            <b id="bannerRoom"></b>
+          </div>
           <div class="map-canvas">
             <img src="assets/school-map.png" alt="오션중학교 1층부터 4층까지의 교실 및 시설 배치도">
             <div class="map-marker" id="mapMarker" hidden aria-live="polite">

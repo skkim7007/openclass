@@ -18,19 +18,19 @@ const rawTimetable = {
 };
 
 const specialRoomFloors = {
-  "오션홀":"별관 2층", "진로활동실":"본관 4층", "DS3실":"본관 1층", "음악실":"본관 2층",
-  "상상나래실":"본관 3층", "과학실2":"본관 4층", "기술실":"본관 1층", "미술실2":"본관 1층",
-  "과학1실":"본관 3층", "과학3실":"본관 4층", "무용실":"별관 2층", "가사실":"본관 1층",
-  "미술실1":"별관 2층", "운동장":"야외"
+  "오션홀":"2층", "진로활동실":"4층", "DS3실":"1층", "음악실":"2층",
+  "상상나래실":"3층", "과학실2":"4층", "기술실":"1층", "미술실2":"1층",
+  "과학1실":"3층", "과학3실":"4층", "무용실":"2층", "가사실":"1층",
+  "미술실1":"2층", "운동장":"야외"
 };
 
 function floorFor(room) {
   if (specialRoomFloors[room]) return specialRoomFloors[room];
   const explicit = room.match(/([본별]관\s*)?(\d)층/);
-  if (explicit) return `${explicit[1] || ""}${explicit[2]}층`;
+  if (explicit) return `${explicit[2]}층`;
   if (room === "운동장") return "야외";
   const grade = room.match(/^([123])-/)?.[1];
-  return grade ? `본관 ${Number(grade) + 1}층` : "현장 안내 확인";
+  return grade ? `${Number(grade) + 1}층` : "현장 안내 확인";
 }
 
 const timetable = Object.fromEntries(Object.entries(rawTimetable).map(([key, lessons]) => [key,
@@ -103,13 +103,17 @@ document.querySelector("#findButton").addEventListener("click", () => {
     const marker = document.querySelector("#mapMarker");
     const position = mapPositions[link.dataset.room];
     if (position) {
+      const banner = document.querySelector("#locationBanner");
       marker.style.left = `${position[0]}%`;
       marker.style.top = `${position[1]}%`;
       marker.hidden = false;
+      banner.hidden = false;
+      document.querySelector("#bannerFloor").textContent = link.dataset.floor;
+      document.querySelector("#bannerRoom").textContent = link.dataset.room;
       marker.classList.remove("is-active");
       void marker.offsetWidth;
       marker.classList.add("is-active");
-      document.querySelector("#markerLabel").textContent = link.dataset.room;
+      document.querySelector("#markerLabel").textContent = `${link.dataset.floor} · ${link.dataset.room}`;
     }
   }));
 });
