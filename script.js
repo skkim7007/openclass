@@ -40,6 +40,19 @@ const timetable = Object.fromEntries(Object.entries(rawTimetable).map(([key, les
   }))
 ]));
 
+// 배치도 이미지 위 교실 중심 위치(%). 배치도 수정 시 이 값만 조정하세요.
+const mapPositions = {
+  "1-1 교실":[48,70], "1-2 교실":[63,70], "1-3 교실":[70,70], "1-4 교실":[77,70], "1-5 교실":[84,70], "1-6 교실":[91,70],
+  "1-7 교실":[68,54], "1-8 교실":[76,54], "1-9 교실":[84,54], "1-10 교실":[91,54],
+  "2-1 교실":[48,46], "2-2 교실":[63,46], "2-3 교실":[70,46], "2-4 교실":[77,46], "2-5 교실":[84,46], "2-6 교실":[91,46],
+  "2-7 교실":[68,33], "2-8 교실":[76,33], "2-9 교실":[84,33], "2-10 교실":[91,33],
+  "3-1 교실":[48,25], "3-2 교실":[63,25], "3-3 교실":[70,25], "3-4 교실":[77,25], "3-5 교실":[84,25], "3-6 교실":[91,25],
+  "3-7 교실":[68,9], "3-8 교실":[76,9], "3-9 교실":[84,9], "3-10 교실":[91,9],
+  "오션홀":[21,56], "진로활동실":[48,13], "DS3실":[31,78], "음악실":[57,50], "상상나래실":[48,28],
+  "과학실2":[48,10], "기술실":[50,82], "미술실2":[87,82], "과학1실":[48,37], "과학3실":[48,4],
+  "무용실":[18,68], "가사실":[71,82], "미술실1":[21,68], "운동장":[70,88]
+};
+
 // Google Apps Script를 웹 앱으로 배포한 뒤 아래 주소를 교체하세요.
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtFl-WRmI8j2ynhF69mhAce1GUUJlMuEWyOVrt2ltz2S0GW-ip-d-hknYprQDLwHR_Yw/exec";
 
@@ -87,6 +100,17 @@ document.querySelector("#findButton").addEventListener("click", () => {
 
   resultArea.querySelectorAll(".map-link").forEach(link => link.addEventListener("click", () => {
     document.querySelector("#selectedFloor").textContent = `${link.dataset.floor} · ${link.dataset.room}`;
+    const marker = document.querySelector("#mapMarker");
+    const position = mapPositions[link.dataset.room];
+    if (position) {
+      marker.style.left = `${position[0]}%`;
+      marker.style.top = `${position[1]}%`;
+      marker.hidden = false;
+      marker.classList.remove("is-active");
+      void marker.offsetWidth;
+      marker.classList.add("is-active");
+      document.querySelector("#markerLabel").textContent = link.dataset.room;
+    }
   }));
 });
 
