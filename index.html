@@ -82,7 +82,7 @@
             <p class="kicker">SCHOOL MAP</p>
             <h2>학교 배치도에서<br>교실 위치를 확인하세요.</h2>
           </div>
-          <p><b id="selectedFloor">전체 층 배치도</b><br>지도를 누르면 크게 열립니다. 휴대전화에서는 확대해서 확인하실 수 있습니다.</p>
+          <p><b id="selectedFloor">교실을 먼저 선택해 주세요</b><br>선택한 교실이 있는 층의 지도만 크게 표시됩니다.</p>
         </div>
         <div class="map-frame">
           <div class="location-banner" id="locationBanner" hidden>
@@ -90,13 +90,14 @@
             <strong id="bannerFloor"></strong>
             <b id="bannerRoom"></b>
           </div>
-          <div class="map-canvas">
-            <img src="assets/school-map.png" alt="오션중학교 1층부터 4층까지의 교실 및 시설 배치도">
+          <div class="map-placeholder" id="mapPlaceholder">교실 찾기 결과에서<br><b>지도에서 위치 보기</b>를 눌러주세요.</div>
+          <div class="map-canvas" id="mapCanvas" hidden>
+            <img id="floorMap" src="" alt="">
             <div class="map-marker" id="mapMarker" hidden aria-live="polite">
               <span class="marker-dot"></span><b id="markerLabel"></b>
             </div>
           </div>
-          <a class="map-open" href="assets/school-map.png" target="_blank">배치도 크게 보기 ↗</a>
+          <a class="map-open" id="mapOpen" href="#" target="_blank" hidden>선택한 층 배치도 크게 보기 ↗</a>
         </div>
       </div>
     </section>

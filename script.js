@@ -53,6 +53,14 @@ const mapPositions = {
   "무용실":[18,68], "가사실":[71,82], "미술실1":[21,68], "운동장":[70,88]
 };
 
+const floorMaps = {
+  "1층": { src:"assets/map-1f.png", start:73.57, end:100 },
+  "2층": { src:"assets/map-2f.png", start:45.90, end:73.57 },
+  "3층": { src:"assets/map-3f.png", start:24.74, end:45.90 },
+  "4층": { src:"assets/map-4f.png", start:0, end:24.74 },
+  "야외": { src:"assets/map-1f.png", start:73.57, end:100 }
+};
+
 // Google Apps Script를 웹 앱으로 배포한 뒤 아래 주소를 교체하세요.
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtFl-WRmI8j2ynhF69mhAce1GUUJlMuEWyOVrt2ltz2S0GW-ip-d-hknYprQDLwHR_Yw/exec";
 
@@ -116,10 +124,20 @@ document.querySelector("#findButton").addEventListener("click", () => {
     document.querySelector("#selectedFloor").textContent = `${link.dataset.floor} · ${link.dataset.room}`;
     const marker = document.querySelector("#mapMarker");
     const position = mapPositions[link.dataset.room];
-    if (position) {
+    const floorMap = floorMaps[link.dataset.floor];
+    if (position && floorMap) {
       const banner = document.querySelector("#locationBanner");
+      const mapCanvas = document.querySelector("#mapCanvas");
+      const mapImage = document.querySelector("#floorMap");
+      const mapOpen = document.querySelector("#mapOpen");
+      mapImage.src = floorMap.src;
+      mapImage.alt = `오션중학교 ${link.dataset.floor} 교실 및 시설 배치도`;
+      mapOpen.href = floorMap.src;
+      mapCanvas.hidden = false;
+      mapOpen.hidden = false;
+      document.querySelector("#mapPlaceholder").hidden = true;
       marker.style.left = `${position[0]}%`;
-      marker.style.top = `${position[1]}%`;
+      marker.style.top = `${((position[1] - floorMap.start) / (floorMap.end - floorMap.start)) * 100}%`;
       marker.hidden = false;
       banner.hidden = false;
       document.querySelector("#bannerFloor").textContent = link.dataset.floor;
